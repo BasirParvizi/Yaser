@@ -2252,52 +2252,6 @@ function showError(message) {
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // تشخیص سیستم عامل
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-
-        // اگر کاربر از iOS استفاده می‌کند، اسکریپت اجرا نشود
-        if (isIOS) {
-            return;
-        }
-
-        // گرفتن تمام لینک‌های صفحه
-        const links = document.querySelectorAll('a');
-
-        // مرور روی هر لینک و تغییر آن
-        links.forEach(link => {
-            const instagramLink = link.href;
-
-            // بررسی اینکه لینک اینستاگرام است
-            if (instagramLink.includes('instagram.com')) {
-                // گرفتن username از لینک اینستاگرام
-                const username = instagramLink.split('/').pop().replace(/\/$/, '');
-
-                // تغییر لینک به Deep Link
-                link.href = `instagram://user?username=${username}`;
-
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const deepLink = link.href;
-
-                    // تلاش برای باز کردن لینک در اپلیکیشن
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = deepLink;
-
-                    document.body.appendChild(iframe);
-
-                    // حذف iframe بعد از تلاش برای باز کردن لینک
-                    setTimeout(() => {
-                        document.body.removeChild(iframe);
-                    }, 1500); // 1.5 ثانیه تاخیر برای چک کردن نصب بودن اپلیکیشن
-                });
-            }
-        });
-    });
-</script>
-
-<script>
   document.addEventListener('DOMContentLoaded', function () {
     const firstUsernameLink = document.querySelector('.username-link a');
     console.log('Selected element:', firstUsernameLink); // بررسی وجود عنصر
